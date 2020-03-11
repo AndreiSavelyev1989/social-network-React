@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
     return jobImage 
     ? <img className={styles.jobImage} src='https://img2.freepng.ru/20180519/kse/kisspng-smiley-veselyy-photography-5b007126476a15.4166329615267556222925.jpg' /> 
     : <img className={styles.jobImage} src='https://png.pngtree.com/png-clipart/20190520/original/pngtree-angry-emoji-vector-icon-png-image_3720389.jpg' />
-  }
+ }
 
   return (
     <div>
@@ -35,7 +35,6 @@ const ProfileInfo = (props) => {
         <div>lookingForAJobDescription: {props.profile.lookingForAJobDescription}</div>
         <div>fullName: {props.profile.fullName}</div>
         <div>userId: {props.profile.userId}</div>
-        {/* ava + description */}
       </div>
     </div>
   )
