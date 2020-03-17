@@ -49,12 +49,10 @@ export const updateNewPostText = (text) => ({ type: UPDATE_NEW_POST_TEXT, newTex
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 
 
-export const userProfile = (userId) => {
-    return (dispatch) => {
-        usersAPI.getUserProfile(userId).then(data => {
-            dispatch(setUserProfile(data));
-        })
-    }
+export const getUserProfile = (userId) => (dispatch) => {
+    usersAPI.getProfile(userId).then(data => {
+        dispatch(setUserProfile(data));
+    })
 }
 
 export default profileReducer;
