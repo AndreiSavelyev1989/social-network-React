@@ -7,7 +7,9 @@ const Header = (props) => {
         <header className={styles.header}>
             <img src='https://image.flaticon.com/icons/png/512/36/36447.png' />
             <div className={styles.loginBlock}>
-                {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
+                {props.isAuth 
+                ? <div>{props.login} - <button onClick={props.logout}>Logout</button></div>
+                : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )
