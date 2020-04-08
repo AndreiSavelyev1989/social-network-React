@@ -14,15 +14,16 @@ class ProfileContainer extends React.Component {
 
     if (!userId) {
       userId = 6251;
+      if(!userId){
+        this.props.history.push('/login')
+      }
     }
+
     this.props.getUserProfile(userId);
     this.props.getStatus(userId);
   }
 
-  
-
   render() {
-
     return (
       <div>
         <Profile {... this.props}/>
@@ -36,7 +37,6 @@ let mapStateToProps = (state) => ({
   status: state.profilePage.status
 
 })
-
 
 export default compose(
   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
