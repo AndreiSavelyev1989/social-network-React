@@ -5,18 +5,18 @@ const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
+const SET_TOTAL_ITEMS_COUNT = 'SET_TOTAL_ITEMS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS';
 
 
 let initialState = {
     users: [],
-    pageSize: 20,
-    totalUsersCount: 0,
+    pageSize: 10,
+    totalItemsCount: 0,
     currentPage: 1,
     isFetching: true,
-    followingInProgress: []
+    followingInProgress: [],
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -57,10 +57,10 @@ const usersReducer = (state = initialState, action) => {
                 currentPage: action.currentPage
             }
 
-        case SET_TOTAL_USERS_COUNT:
+        case SET_TOTAL_ITEMS_COUNT:
             return {
                 ...state,
-                totalUsersCount: action.totalUsersCount
+                totalItemsCount: action.totalItemsCount
             }
 
         case TOGGLE_IS_FETCHING:
@@ -86,7 +86,7 @@ export const followSuccess = (userId) => ({ type: FOLLOW, userId })
 export const unfollowSuccess = (userId) => ({ type: UNFOLLOW, userId })
 export const setUsers = (users) => ({ type: SET_USERS, users })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
-export const setTotalUsersCount = (totalUsersCount) => ({ type: SET_TOTAL_USERS_COUNT, totalUsersCount })
+export const setTotalItemsCount = (totalItemsCount) => ({ type: SET_TOTAL_ITEMS_COUNT, totalItemsCount })
 export const toggleIsFetching = (isFetching) => ({ type: TOGGLE_IS_FETCHING, isFetching })
 export const toggleFollowingProgress = (followingInProgress, userId) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, followingInProgress, userId })
 
@@ -98,7 +98,7 @@ export const requestUsers = (page, pageSize) => async (dispatch) => {
     let data = await usersAPI.getUsers(page, pageSize);
     dispatch(toggleIsFetching(false));
     dispatch(setUsers(data.items));
-    dispatch(setTotalUsersCount(data.totalCount));
+    dispatch(setTotalItemsCount(data.totalCount));
 }
 
 

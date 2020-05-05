@@ -4,14 +4,15 @@ import User from './User';
 
 
 
-const Users = ({ currentPage, totalUsersCount, pageSize, onPageChanged, users, ...props }) => {
+const Users = ({ currentPage, totalItemsCount, pageSize, onPageChanged, users, ...props }) => {
 
     return <div>
         <Pagination
             currentPage={currentPage}
-            totalUsersCount={totalUsersCount}
+            totalItemsCount={totalItemsCount}
             pageSize={pageSize}
-            onPageChanged={onPageChanged} />
+            onPageChanged={onPageChanged}
+           />
 
         <div>
             {users.map(u => <User
