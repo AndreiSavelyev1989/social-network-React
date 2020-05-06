@@ -1,0 +1,9 @@
+.preloader {
+    width: 150px;
+    height: 150px;
+}
+
+.preloaderText {
+    display: inline-block;
+    float: left;
+}
