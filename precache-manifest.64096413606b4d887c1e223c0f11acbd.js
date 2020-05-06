@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0e74bc1906132797af1a7729a0cef40d",
+    "revision": "82e96a34bfb3c4ab07bd3e47e51464f6",
     "url": "/AndreiSavelyev1989/social-network-React/index.html"
   },
   {
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/AndreiSavelyev1989/social-network-React/static/css/5.b7c3a574.chunk.css"
   },
   {
-    "revision": "27b0b5922e6b6fe6e5f4",
+    "revision": "130eb7f21e66a3fb3fac",
     "url": "/AndreiSavelyev1989/social-network-React/static/css/main.a89aca60.chunk.css"
   },
   {
@@ -44,8 +44,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/AndreiSavelyev1989/social-network-React/static/js/5.6f14795a.chunk.js"
   },
   {
-    "revision": "27b0b5922e6b6fe6e5f4",
-    "url": "/AndreiSavelyev1989/social-network-React/static/js/main.cbd188b0.chunk.js"
+    "revision": "130eb7f21e66a3fb3fac",
+    "url": "/AndreiSavelyev1989/social-network-React/static/js/main.9da352a6.chunk.js"
   },
   {
     "revision": "0dd66b0961690bebf596",
