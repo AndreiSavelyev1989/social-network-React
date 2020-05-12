@@ -5,3 +5,14 @@
     height: 20px;
     width: 30px;
 }
+.userPhoto{
+    height: 200px;
+    width: 200px;
+}
+.contact{
+    padding-left: 20px;
+}
+.formSummaryError{
+    border: solid red 2px ;
+    color: red;
+}

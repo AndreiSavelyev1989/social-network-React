@@ -1,45 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import userPhoto from '../../../assets/images/user.png'
+import ProfileDataForm from './ProfileDataForm';
 
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveDataProfile }) => {
 
-const ProfileInfo = ({profile, status, updateStatus}) => {
+  const [editMode, setEditMode] = useState(false);
 
   if (!profile) {
     return <Preloader />
   }
 
-  let lookingJobImage = () => {
-    let jobImage = profile.lookingForAJob;
-    return jobImage
-      ? <img className={styles.jobImage} src='https://img2.freepng.ru/20180519/kse/kisspng-smiley-veselyy-photography-5b007126476a15.4166329615267556222925.jpg' />
-      : <img className={styles.jobImage} src='https://png.pngtree.com/png-clipart/20190520/original/pngtree-angry-emoji-vector-icon-png-image_3720389.jpg' />
+  const onMainPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      savePhoto(e.target.files[0]);
+    }
   }
+  
+    const onSubmit = (formData) => {
+      saveDataProfile(formData).then(
+        () => {
+          setEditMode(false);
+        });
+    }
 
   return (
     <div>
 
       <div className={styles.descriptionBlock}>
-        <img src={profile.photos.large} />
-        <div>{profile.aboutMe}</div>
-        <div>facebook : {profile.contacts.facebook}</div>
-        <div>website: {profile.contacts.website}</div>
-        <div>vk: {profile.contacts.vk}</div>
-        <div>twitter: {profile.contacts.twitter}</div>
-        <div>instagram: {profile.contacts.instagram}</div>
-        <div>youtube: {profile.contacts.youtube}</div>
-        <div>github: {profile.contacts.github}</div>
-        <div>mainLink: {profile.contacts.mainLink}</div>
-        <div>lookingForAJob: {lookingJobImage()}</div>
-        <div>lookingForAJobDescription: {profile.lookingForAJobDescription}</div>
-        <div>fullName: {profile.fullName}</div>
-        <div>userId: {profile.userId}</div>
+        <img src={profile.photos.large || userPhoto} className={styles.userPhoto} />
+        {isOwner && <input type={'file'} onChange={onMainPhotoSelected} />}
+
+        {editMode
+          ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
+          : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => { setEditMode(true) }} />}
+
       </div>
 
-      <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
-    </div>
+      <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+    </div >
   )
+}
+
+const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+  return <div>
+    {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
+    <div>
+      <b>Full name:</b> {profile.fullName}
+    </div>
+    <div>
+      <b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}
+    </div>
+    {profile.lookingForAJob &&
+      <div>
+        <b>My professional skills:</b> {profile.lookingForAJobDescription}
+      </div>
+    }
+    <div>
+      <b>About me:</b> {profile.aboutMe}
+    </div>
+    <div>
+      <b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
+        return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+      })}
+    </div>
+  </div>
+
+}
+
+export const Contact = ({ contactTitle, contactValue }) => {
+  return <div className={styles.contact}><b>{contactTitle}</b> : {contactValue}</div>
 }
 
 export default ProfileInfo;
